@@ -6,6 +6,8 @@
 
 %for special fonts (like natural, real, complex, integer...) use this package
 \usepackage{amsfonts}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue}
 
 %for images
 \usepackage{graphicx}
@@ -13,46 +15,43 @@
 
 \begin{document}
 
-\title{What is the probability of winning the Hamilton lottery?}
-\author{Dana Mastropole}
+\title{What is the probability of winning the Hamilton lottery?\\
+\large Simple Statistics can tell you the answer}
+\author{Dana Mastropole and Tianhui Li}
 \date{\today}
 \maketitle
 
-People interested in seeing the Broadway musical \textit{Hamilton} -- and there are still many of them, with demand driving starting ticket prices to $\$600$ -- can enter Broadway Direct's daily lottery. Winners can receive up to 2 tickets (out of 21 available tickets) for a total of $\$10$.
-
-LINK: https://lottery.broadwaydirect.com/show/hamilton/
+People interested in seeing the Broadway musical \href{https://lottery.broadwaydirect.com/show/hamilton/}{Hamilton} -- and there are still many of them, with demand driving starting ticket prices to $\$600$ -- can enter Broadway Direct's daily lottery. Winners can receive up to 2 tickets (out of 21 available tickets) for a total of $\$10$.
 
 \vspace{5mm}
 
 \textbf{What's the probability of winning?}
 
-How easy is it to win these coveted tickets? Members of NYC's Data Incubator team have collectively tried and failed 120 times. Given our data, we cannot simply divide the number of successes by the number of trials to calculate our chances of winning -- we would get zero!
+How easy is it to win these coveted tickets? Members of NYC's \href{https://www.thedataincubator.com/}{Data Incubator Team} have collectively tried and failed 120 times. Given our data, we cannot simply divide the number of successes by the number of trials to calculate our chances of winning -- we would get zero (and the odds, which apparenlty small, are clearly non-zero).
 
-Fortunately, The Rule of Three gives us a reasonable estimate for the upper bound on the probability of success, given a certain number of failures. It states that with 95\% confidence, the probability of success is less than $3/N$, where $N$ is the number of failures. Given $N = 120$, we conclude that a reasonable estimate for the probability of winning the \textit{Hamilton} lottery is \textbf{less than 2.5\%}.
+This kind of situation often comes up under many guises in business and big data.  And because we are a \href{https://www.thedataincubator.com/training.html}{data science corporate training company}, we decided to use statistics to determine the answer.  If you're measuring the click-through-rate of a piece of organic or paid content.  Out of 100 impressions, you have not observed any clicks.  The measured CTR is zero but the \textit{true} CTR is likely not zero?  Alternatively, suppose you're measuring the rate of severe adverse side effects of a new drug.  You've tested 40 patients and haven't found any, but you know the chance is unlikely to be zero.  So how great is it?
 
-LINK: https://en.wikipedia.org/wiki/Rule\_of\_three\_(statistics)
+Without any positive cases, we cannot get a lower bound (lowest reasonable probability) on the probability beyond 0 since we have never seen any positive events. Fortunately, the \href{https://en.wikipedia.org/wiki/Rule\_of\_three\_(statistics)}{Rule of Three} gives us a reasonable estimate for the upper bound (highest reasonable probability) on the probability of success, given a certain number of failures. It states that with 95\% confidence, the probability of success is less than $3/N$, where $N$ is the number of failures. Given $N = 120$, we conclude that a reasonable estimate for the probability of winning the \textit{Hamilton} lottery is \textbf{less than 2.5\%}.
 
 \vspace{5mm}
 
 \textbf{How big is the competition?}
 
-How many people enter the \textit{Hamilton} lottery? We know that winners receive either 1 or 2 tickets out of an available 21. Therefore, the fewest number of winners per lottery is 11 (10 two-ticket winners and 1 one-ticket winner). With this information, we can estimate a lower bound on the number of people entering the lottery. In order to get the minimum of 11 winners with a maximum success rate of 0.025, we conclude that \textbf{at least 440 people} enter daily.
-
-LINK: http://mashable.com/2016/05/26/odds-of-winning-a-hamilton-ticket/#v7nFUSKb6iqZ
+How many people enter the \textit{Hamilton} lottery? We know that winners receive either 1 or 2 tickets out of an available 21. Therefore, the fewest number of winners per lottery is 11 (10 two-ticket winners and 1 one-ticket winner). With this information, we can estimate a lower bound on the number of people entering the lottery. In order to get the minimum of 11 winners with a maximum success rate of 0.025, we conclude that \textbf{at least 440 people} enter daily.  Of ocurse, this is likely to be a very conservative underestimate.
 
 \vspace{5mm}
 
 \textbf{How do our numbers compare with the reported values?}
 
-According to Broadway Direct's FAQ page, \textbf{over 10,000 people} enter the lottery daily. If every winner is awarded a single ticket (i.e. there are 21 winners), the probability of winning is 0.21\%. In the case where there are only 11 winners, the probability of winning is 0.11\%. Therefore, the probability of winning the lottery is \textbf{between 0.11\% and 0.21\%}.
+According to a \href{http://mashable.com/2016/05/26/odds-of-winning-a-hamilton-ticket/#v7nFUSKb6iqZ}{Mashable Article} that came out earlier this year, \textbf{over 10,000 people} enter the lottery daily. If every winner is awarded a single ticket (i.e. there are 21 winners), the probability of winning is 0.21\%. In the case where there are only 11 winners, the probability of winning is 0.11\%. Therefore, the probability of winning the lottery is \textbf{between 0.11\% and 0.21\%}, less than one tenth of what we estimated.  Of course, this is entirely possible -- since we haven't won a single ticket and could only calculate an upper bound, not a lower bound.
 
 \vspace{5mm}
 
 \textbf{How long do you have to wait to win?}
 
-The distribution of the number of failures up to and including the first success is given by the geometric distribution, where the expected (or average) number of trials is $1/p$. Plugging in the high (0.0021) and low (0.0011) estimates for $p$, we expect to enter the lottery between 476 and 909 times.
+The distribution of the number of failures up to and including the first success is given by the \href{https://en.wikipedia.org/wiki/Geometric\_distribution}{geometric distribution}, where the expected (or average) number of trials is $1/p$. Plugging in the high (0.0021) and low (0.0011) estimates for $p$, we expect to enter the lottery between 476 and 909 times:
 
-Assuming that \textit{Hamilton} does not continue to run twice daily for the next 2-3 years, how long do we expect to wait for 476 to 909 performances to occur? We can get a very rough estimate for the number of performances per day by considering some of the longest running Broadway shows.
+Assuming that \textit{Hamilton} does not continue to run on it's current schedule for the next 2-3 years, how long do we expect to wait for 476 to 909 performances to occur? We can get a very rough estimate for the number of performances per day by considering some of the \href{https://en.wikipedia.org/wiki/List\_of\_the\_longest-running\_Broadway\_shows}{longest running Broadway shows}.
 
 \begin{center}
   \begin{tabular}{ | c | c | c | c |}
@@ -62,26 +61,23 @@ Assuming that \textit{Hamilton} does not continue to run twice daily for the nex
     Chicago & 7,386 & 8,387 & 1.14\\ \hline
     The Lion King & 7,012 & 7,986 & 1.14\\ \hline
     Cats & 6,548 & 7,485 & 1.14\\ \hline
-    Les Mis\'{e}rables & 5,911 & 6,680 & 1.13\\ 
+    Les Mis\'{e}rables & 5,911 & 6,680 & 1.13\\
     \hline
   \end{tabular}
 \end{center}
 
-If we divide the expected number of performances (476 and 909) by the average daily performances (1.14), we get a wait time of \textbf{340 to 649 days}.
-
-LINK: https://en.wikipedia.org/wiki/Geometric\_distribution
-LINK: https://en.wikipedia.org/wiki/List\_of\_the\_longest-running\_Broadway\_shows
+If we divide the expected number of performances (476 and 909) by the average daily performances (1.14), we get a wait time of \textbf{340 to 649 days} (one to two years!).
 
 \vspace{5mm}
 
 \textbf{Derivation of the Rule of Three:}
 Let's say that the probability of winning the lottery is $p$. We know from probability theory and statistics that the discrete probability distribution of $k$ successes in $n$ trials is binomial. 
 
-$$ f(k|n,p) = Pr(X = k) = {n \choose k} p^k (1 - p)^{n-k} $$
+$$ \mbox{Pr}(X = k) = {n \choose k} p^k (1 - p)^{n-k} $$
 
 It follows that the cumulative distribution function is:
 
-$$ F(k|n,p) = Pr(X \leq k) = \sum_{i = 0}^{k}  {n \choose i} p^i (1 - p)^{n-i} $$
+$$ \mbox{Pr}(X \leq k) = \sum_{i = 0}^{k}  {n \choose i} p^i (1 - p)^{n-i} $$
 
 In the case where we have zero successes ($k=0$), the right hand side of the equation reduces to $(1-p)^n$. If we want to calculate the $(1 - \alpha)\%$ confidence interval for the upper bound of $p$, we then set the right hand side of the equation to the significance level, $\alpha$. 
 
